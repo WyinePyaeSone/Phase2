@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+	<head>
+		<title>UNO Player Play</title>
+                <script src="js/jquery.js"></script>
+                <script>
+                    $(function(){
+			$.ajax({
+			    type: 'GET', 
+			    url: 'http://localhost:8080/UNOServer/api/game/deal', 
+			    crossDomain: true,
+			    dataType: 'text',
+			    success: function(data) {                                
+			        var json = $.parseJSON(data);
+                                    //alert(data);
+			        for (var i=0; i<json.length; i++)
+			        {
+			            $('#demo').append('<img src="images/'+json[i].image+'.png" />');                                        		
+			        }
+			    }
+
+			});
+		});
+                </script>
+                
+	</head>
+	<body>
+		<h1>Player</h1>
+		<h1>UNO with friends</h1>
+                <p id="demo">
+                    
+                </p>
+
+
+	</body>
+</html>

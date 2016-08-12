@@ -1,0 +1,48 @@
+<html>
+<head>
+	<title>JSON for UNO</title>
+
+	<script src="js/jquery.js"></script>
+
+	<script>
+		$(function(){
+			$.ajax({
+			    type: 'GET', 
+			    url: 'http://localhost:8080/UNOServer/api/game/gamelist', 
+			    crossDomain: true,
+			    dataType: 'text',
+			    success: function(data) {
+
+			    	//alert( "success" );
+			        var json = $.parseJSON(data);
+
+			        for (var i=0; i<json.length; i++)
+			        {
+			            $('#gamelist').append('<option value='+ json[i].gameId + ">" + json[i].name +'</option>');
+			        }
+			    }
+
+			});                       
+		});
+		
+	</script>
+
+	<style type="text/css" media="screen">
+		.name{
+			width: 33%;
+			float: left;
+		}
+	</style>
+</head>
+
+<body>
+<form method="Post" action="http://localhost:8080/UNOServer/api/game/addplayer">
+	<select id="gamelist" size="5" name="gid">
+		
+	</select>
+	<br/>
+	<input type="text" name="pname" id="pname">
+	<input type="Submit" value="JOIN GAME" name="btnJoin" id="btn" />	
+</form>
+</body>
+</html>

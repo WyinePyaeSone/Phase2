@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+	<head>
+		<title>Initiate The Game</title>
+		
+		<script src="js/jquery.js"></script>
+		
+                <script>
+                    $(function(){
+
+			$.ajax({
+			    type: 'GET', 
+			    url: 'http://localhost:8080/UNOServer/api/game/playerlist', 
+			    crossDomain: true,
+			    dataType: 'text',
+			    success: function(data) {
+
+			        var json = $.parseJSON(data);
+                                //alert(data);
+
+			        for (var i=0; i<json.length; i++)
+			        {
+			            $('#demo').append('<div class="pname">'+ json[i].pid + " : " + json[i].name +'</div>');
+			        }
+			    }
+
+			});
+                        
+                        $.ajax({
+			    type: 'GET', 
+			    url: 'http://localhost:8080/UNOServer/api/game/discardPile',
+			    crossDomain: true,
+			    dataType: 'text',
+			    success: function(data) {  
+                                //alert(data);
+			        var json = $.parseJSON(data);
+                                    $('#game').append('<h1>'+json.gname+'</h1>');
+                                    $('#game').append('<img src="images/'+json.image+'.png" />');
+                                    $('#game').append('<img src="images/back.png" />');
+                                    $('#gid').val(json.gid);                                                                   
+                                console.log(data);			        
+			    }
+			});
+		});
+                
+//                $(function(){
+//
+//			
+//		});
+                </script>
+	</head>
+	<body>
+		<h1>Player</h1>
+		<p id="demo">
+		
+		</p>
+        
+		<p id="game">
+		
+		</p>
+                
+                <input type="hidden" name="gid" id="gid">
+
+	</body>
+</html>
+
+

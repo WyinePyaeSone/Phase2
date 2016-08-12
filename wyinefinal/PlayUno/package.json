@@ -1,0 +1,8 @@
+{
+    "name": "PlayUno",
+    "version": "1.0.0",
+    "keywords": ["util", "functional", "server", "client", "browser"],
+    "author": "Tun Lwin Aung",
+    "contributors": [],
+    "dependencies": {}
+}

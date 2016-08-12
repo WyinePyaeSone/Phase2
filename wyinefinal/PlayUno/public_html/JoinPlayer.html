@@ -1,0 +1,49 @@
+<html>
+<head>
+	<title>JSON for UNO</title>
+
+	<script src="js/jquery.js"></script>
+
+	<script>
+		$(function(){
+
+			$.ajax({
+			    type: 'GET', 
+			    url: 'http://localhost:8080/UNOServer/api/game/wait', 
+			    crossDomain: true,
+			    dataType: 'text',
+			    success: function(data) {
+                              
+//
+			        var json = $.parseJSON(data);
+                                    $('#gname').append("Waiting For "+json.gname+" to start"); 
+                                    $('#gid').val(json.gid);    
+                                    $('#pid').val(json.pid); 
+                                    $('#showPid').append(json.pid);
+                                console.log(data);			        
+			    }
+			});
+		});
+		
+	</script>
+
+	<style type="text/css" media="screen">
+		.name{
+			width: 33%;
+			float: left;
+		}
+	</style>
+</head>
+<body>
+    <form method="post" action="http://localhost:8080/UNOServer/api/game/playerStart">
+    <div id="gname">	        
+        
+    </div>
+        <input id="gid" type="hidden" name="gid"/>
+        <input id="pid" type="hidden" name="pid"/>
+        <p id="showPid"></p>
+        <input type="Submit" name="btnStartGame" value="Start Game"/>  
+    </form>
+    
+</body>
+</html>
